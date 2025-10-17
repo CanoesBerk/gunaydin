@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Affettim vs Meh</title>
+  <style>
+    body {
+      background: #0f172a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    button {
+      font-size: 20px;
+      padding: 12px 20px;
+      margin: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #affettim { background-color: #22c55e; color: white; }
+    #meh { background-color: #f59e0b; color: black; }
+    #meh-figure {
+      display: none;
+      font-size: 48px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bugün barış var mı? 🕊️</h1>
+  <button id="affettim">🎉 Affettim</button>
+  <button id="meh">😐 Meh</button>
+  <div id="meh-figure">😭🚶‍♂️</div>
+
+  <script>
+    document.getElementById("affettim").addEventListener("click", () => {
+      confetti();
+    });
+
+    document.getElementById("meh").addEventListener("click", () => {
+      const figure = document.getElementById("meh-figure");
+      figure.style.display = "block";
+      setTimeout(() => figure.style.display = "none", 2000);
+    });
+
+    // Basit konfetiler (CSS tabanlı)
+    function confetti() {
+      const colors = ['#22c55e', '#3b82f6', '#ef4444', '#fbbf24'];
+      for (let i = 0; i < 100; i++) {
+        const conf = document.createElement('div');
+        conf.style.position = 'fixed';
+        conf.style.left = Math.random() * window.innerWidth + 'px';
+        conf.style.top = '-20px';
+        conf.style.width = '10px';
+        conf.style.height = '10px';
+        conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        conf.style.opacity = Math.random();
+        conf.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+        conf.style.transition = 'top 2s linear, transform 2s';
+        document.body.appendChild(conf);
+        setTimeout(() => {
+          conf.style.top = window.innerHeight + 'px';
+          conf.style.transform = 'rotate(' + Math.random() * 720 + 'deg)';
+        }, 10);
+        setTimeout(() => conf.remove(), 2200);
+      }
+    }
+  </script>
+</body>
+</html>
